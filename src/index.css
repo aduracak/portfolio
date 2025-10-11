@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base styles */
+body {
+  @apply bg-dark-900 text-dark-50 font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+  }
+  
+  .glow-border {
+    @apply relative;
+  }
+  
+  .glow-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500 p-0.5 -z-10;
+  }
+  
+  .glow-border > * {
+    @apply bg-dark-900 rounded-lg;
+  }
+  
+  .section-padding {
+    @apply px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-24;
+  }
+  
+  .container-width {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+/* Typing animation cursor */
+.typing-cursor::after {
+  content: '|';
+  @apply animate-pulse text-primary-500;
+}
+
+/* Custom selection */
+::selection {
+  @apply bg-primary-500 bg-opacity-20;
+}
+
+/* Focus styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-dark-900;
+}
+
+/* Preloader styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.preloader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #1e293b;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .section-padding {
+    @apply px-4;
+  }
+}
